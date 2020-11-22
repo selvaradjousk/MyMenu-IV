@@ -165,13 +165,35 @@ public class Order {
     /**
      * Run asking process for several menus.
      */
-    public void runMenus() {
-        System.out.println("Combien souhaitez vous commander de menu ?");
-        int menuQuantity = sc.nextInt();
-        int counter = 0;
-        while (counter < menuQuantity) {
-            runMenu();
-            counter = counter + 1;
-        }
+    public void runMenu() {
+        this.displayAvailableMenu();
+        int nbMenu;
+        do {
+            nbMenu = sc.nextInt();
+            this.displaySelectedMenu(nbMenu);
+            switch (nbMenu) {
+                case 1:
+                    displayAvailableSide(true);
+                    int nbSide = sc.nextInt();
+                    displaySelectedSide(nbSide, true);
+                    displayAvailableDrink();
+                    int nbDrink = sc.nextInt();
+                    displaySelectedDrink(nbDrink);
+                    break;
+                case 2:
+                    displayAvailableSide(true);
+                    nbSide = sc.nextInt();
+                    displaySelectedSide(nbSide, true);
+                    break;
+                case 3:
+                    displayAvailableSide(false);
+                    nbSide = sc.nextInt();
+                    displaySelectedSide(nbSide, false);
+                    displayAvailableDrink();
+                    nbDrink = sc.nextInt();
+                    displaySelectedDrink(nbDrink);
+                    break;
+            }
+        } while (nbMenu < 1 || nbMenu > 3);
     }
 }
